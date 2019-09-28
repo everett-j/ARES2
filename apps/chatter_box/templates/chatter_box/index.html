@@ -1,0 +1,595 @@
+<html>
+  <head>
+      <title>A Rather Extraordinary System (A.R.E.S.)</title>
+      <meta name=viewport content="width=device-width, initial-scale=1">
+    
+      {% load static %}
+      <!-- CSS -->
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+      <link rel="stylesheet" href="{% static 'chatter_box/css/font-awesome.min.css' %}">
+      <link rel="stylesheet" href="{% static 'chatter_box/css/style.css' %}">
+	 
+  </head>
+  <body>
+    <nav class="navbar navbar-dark bg-dark">
+        <div class="nav_img">
+            <img src="{% static 'chatter_box/img/ai2.gif' %}" alt="ARES"> <a class="navbar-brand" href="/">  (A.R.E.S.)</a>
+        </div>
+     
+    </nav>
+<div id="shut"></div>
+    <div class="container">
+
+  <!--BEGIN DYNAMIC DIV-->
+
+      <div class="text-center hd1">
+				
+				<div id="MainContainer">
+					<!--ARES CARD-->
+					<div id="ares_card" class="collapse.show card mb-3 " style="max-width: 850px;">
+					 <div class="row no-gutters">
+					   <div class="col-md-4">
+						   <img class="aresMain"src="{% static 'chatter_box/img/ai2.gif' %}" alt="ARES">
+					   </div>
+					   <div class="col-md-8">
+						 <div class="card-body">
+						   <p class="large_text">A.R.E.S.</p>
+						   <p id='small_text' class="card-text small">A Rather Extraordinary System</p>
+						   <p id='small_text' class="card-text"><small class="text-muted">&#x1F5A4; born in Bellevue, WA</small></p>
+						 </div>
+					   </div>
+					 </div>
+				   </div>
+				   <div id="ares_card2" class="collapse.show card mb-3 " style="max-width: 850px;">
+						<div class="row no-gutters">
+						   
+							<div class="card-body">
+							  <p class="medium_text">What I can do for you:</p>
+							  <p id='small_text' class="card-text small">You can ask me for traffic, weather and even info about my creators.
+							  <br>
+							  I am still young and learning new things.</p>
+							  <img class="aresMain2"src="{% static 'chatter_box/img/arrow.png' %}" alt="right">
+							</div>						
+						</div>
+					  </div>
+				   
+				</div>
+
+
+		<!--Weather CARD-->
+	  <div id="weather_card" class="card mb-3 " style="max-width: 750px;">
+		  <div class="row no-gutters">
+		   
+			
+			  
+				<h5 class="card-title">Local Weather</h5>
+				<script type='text/javascript' src='https://darksky.net/widget/default/47.6098,-122.1707/us12/en.js?width=100%&height=350&title=Bellevue, WA&textColor=333333&bgColor=FFFFFF&transparency=false&skyColor=undefined&fontFamily=Default&customFont=&units=us&htColor=333333&ltColor=333333&displaySum=yes&displayHeader=yes'></script>
+			
+			
+		  </div>
+		</div>
+		<!--END Weather CARD-->
+
+      <mybot></mybot>
+
+    </div><!--container end-->
+
+
+    <!--JS-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script src="{% static 'chatter_box/js/script.js' %}"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+	<!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+
+
+
+
+    <!------------------------------------ BOT JS ------------------------------------>
+<script>
+$(document).ready(function() {
+	$("#weather_card").hide()
+
+
+	var stat = "{% static 'chatter_box/img/ai2.gif' %}"
+	//---------------------------------- Add dynamic html bot content(Widget style) ----------------------------
+	// You can also add the html content in html page and still it will work!
+	var mybot = '<div class="chatCont" id="chatCont">'+
+								'<div class="bot_profile">'+
+									'<img src="'+stat+'" class="bot_p_img">'+
+									'<div class="close">'+
+										'<i class="fa fa-times" aria-hidden="true"></i>'+
+									'</div>'+
+								'</div><!--bot_profile end-->'+
+								'<div id="result_div" class="resultDiv"></div>'+
+								'<div class="chatForm" id="chat-div">'+
+									'<div class="spinner">'+
+										'<div class="bounce1"></div>'+
+										'<div class="bounce2"></div>'+
+										'<div class="bounce3"></div>'+
+									'</div>'+
+									'<input type="text" id="chat-input" autocomplete="off" placeholder="Type here to chat..."'+'class="form-control bot-txt"/>'+
+								'</div>'+
+							'</div><!--chatCont end-->'+
+							'<div class="profile_div">'+
+								'<div class="row">'+
+									'<div class="col-hgt">'+
+										'<img src="'+stat+'" class="img-circle img-profile">'+
+									'</div><!--col-hgt end-->'+
+									'<div class="col-hgt">'+
+										'<div class="chat-txt">'+
+											'Click here to talk with me!'+
+										'</div>'+
+									'</div><!--col-hgt end-->'+
+								'</div><!--row end-->'+
+							'</div><!--profile_div end-->';
+	$("mybot").html(mybot);
+	// ------------------------------------------ Toggle chatbot -----------------------------------------------
+	$('.profile_div').click(function() {
+		$('.profile_div').slideToggle();
+		$('.chatCont').toggle();
+		$('.bot_profile').slideToggle();
+		$('.chatForm').slideToggle();
+		document.getElementById('chat-input').focus();
+	});
+	$('.close').click(function() {
+		$('.profile_div').toggle();
+		$('.chatCont').toggle();
+		$('.bot_profile').slideToggle();
+		$('.chatForm').slideToggle();
+	});
+	// Session Init (is important so that each user interaction is unique)--------------------------------------
+	var session = function() {
+		// Retrieve the object from storage
+		if(sessionStorage.getItem('session')) {
+			var retrievedSession = sessionStorage.getItem('session');
+		} else {
+			// Random Number Generator
+			var randomNo = Math.floor((Math.random() * 1000) + 1);
+			// get Timestamp
+			var timestamp = Date.now();
+			// get Day
+			var date = new Date();
+			var weekday = new Array(7);
+			weekday[0] = "Sunday";
+			weekday[1] = "Monday";
+			weekday[2] = "Tuesday";
+			weekday[3] = "Wednesday";
+			weekday[4] = "Thursday";
+			weekday[5] = "Friday";
+			weekday[6] = "Saturday";
+			var day = weekday[date.getDay()];
+			// Join random number+day+timestamp
+			var session_id = randomNo+day+timestamp;
+			// Put the object into storage
+			sessionStorage.setItem('session', session_id);
+			var retrievedSession = sessionStorage.getItem('session');
+		}
+		return retrievedSession;
+		// console.log('session: ', retrievedSession);
+	}
+	// Call Session init
+	var mysession = session();
+	// on input/text enter--------------------------------------------------------------------------------------
+	$('#chat-input').on('keyup keypress', function(e) {
+		var keyCode = e.keyCode || e.which;
+		var text = $("#chat-input").val();
+		if (keyCode === 13) {
+			if(text == "" ||  $.trim(text) == '') {
+				e.preventDefault();
+				return false;
+			} else {
+				showSpinner();
+				document.getElementById("chat-input").focus();
+				setUserResponse(text);
+				console.log(text);
+				var ctext = text;
+				text = text.split(",").join("").split("'").join("").split("!").join("").split("?").join("").split(".").join("").split(" ").join("asdfghjkl")
+				var test = "send/"+text
+			$.ajax({
+				url: test,
+				method: 'get',
+				success: function (response){
+					var UserResponse = '<p class="botResult">'+response+'</p><div class="clearfix"></div>';
+					$(UserResponse).appendTo('#result_div');
+					console.log(response)
+					if(response.includes("Generating traffic map")){
+						$("#MainContainer")
+						.delay(3000)
+						.queue(function(n){
+						$("#shut").html("")
+						$("#weather_card").hide()
+							$(this)
+						.html(
+						`<div id="traffic_card" class="card mb-3 " style="max-width: 850px;">
+							<div class="row no-gutters">
+								<div class="col-md-8">
+								<div class="card-body">
+									<h5 class="card-title">Local Traffic</h5>
+									<iframe src="https://embed.waze.com/iframe?zoom=12&lat=47.621438&lon=-122.208996&ct=livemap" width="800" height="500" allowfullscreen></iframe>
+									
+									</div>
+								</div>
+							</div>
+						</div>`)
+					n();
+						})
+						
+					} else if(response.includes("Generating weather map")){
+						$("#MainContainer")
+							.delay(3000)
+							.queue(function(n){
+						$("#shut").html("")
+								$(this)
+								.html("")
+								n();
+								$("#weather_card").show()
+							})
+
+					} else if(response.includes("Generating creator information")){
+						$("#weather_card").hide()
+						$("#MainContainer")
+							.delay(3000)
+							.queue(function(n){
+						$("#shut").html("")
+								$(this)
+								.html(
+						'<div id="joshe_card" class="card mb-3 " style="max-width: 850px;">'+
+							'<div class="row no-gutters">'+
+								'<div class="col-md-4">'+
+									`<img src="{% static 'chatter_box/img/josh-everett.jpg' %}" class="card-img" alt="Josh Everett">`+
+								'</div>'+
+								'<div class="col-md-8">'+
+									'<div class="card-body">'+
+										'<h5 class="card-title">Josh Everett</h5>'+
+										'<p id="small_text" class="card-text small">Well-versed in Python, Angular, JavaScript, MongoDB, Django and MySQL. Military veteran with'+
+										'strong ability to manage projects from concept to completion ensuring on-time, on-budget, and on-'+
+										'target results. Equally adept at working with teams and individually with minimal supervision.</p>'+
+										'<p id="small_text" class="card-text"><a href="http://www.josheverett.info">JoshEverett.info</a></p>'+
+										'<p id="small_text" class="card-text"><small class="text-muted">Lexington Park, MD</small></p>'+
+									'</div>'+
+								'</div>'+
+							'</div>'+
+						'</div>'+
+						'<div id="josh_card" class="card mb-3 " style="max-width: 850px;">'+
+							'<div class="row no-gutters">'+
+								'<div class="col-md-4">'+
+										`<img src="{% static 'chatter_box/img/josh-richardson.jpg' %}" class="card-img" alt="Josh Richardson">`+
+								'</div>'+
+								'<div class="col-md-8">'+
+									'<div class="card-body">'+
+										'<h5 class="card-title">Josh Richardson</h5>'+
+										'<p id="small_text" class="card-text small">A full stack developer who is obsessed with new technologies.  As a US Army veteran, he has learned to work well in teams both large and small.   Graduate of Coding Dojo as of October 2019. </p>'+
+										'<p id="smaller_text" class="card-text"><small class="text-muted">Greater Seattle Area, WA</small></p>'+
+										'</div>'+
+								'</div>'+
+							'</div>'+
+						'</div>'+
+						'<div id="tim_card" class="card mb-3 " style="max-width: 850px;">'+
+							'<div class="row no-gutters">'+
+								'<div class="col-md-4">'+
+										`<img src="{% static 'chatter_box/img/tim.jpg' %}" class="card-img" alt="Tim Rogers">`+
+								'</div>'+
+								'<div class="col-md-8">'+
+									'<div class="card-body">'+
+										'<h5 class="card-title">Tim Rogers</h5>'+
+										'<p id="small_text" class="card-text small">A student of Coding Dojo, a San Jose State University graduate, and an Army Reserve Veteran. His experience includes leadership training, electrical engineering, software development, cyber security, data analytics, web development, radio and satellite communication, logistics, project management, and full stack web development.</p>'+
+										'<p id="smaller_text" class="card-text"><small class="text-muted">Bellevue, WA</small></p>'+
+									'</div>'+
+								'</div>'+
+							'</div>'+
+						'</div>'
+						)
+						n();
+							})
+						
+					} else if(response.includes("Generating Tim&#39;s information")){
+						$("#weather_card").hide()
+						$("#MainContainer")
+						.delay(3000)
+						.queue(function(n){
+						$("#shut").html("")
+								$(this)
+						.html(
+						'<div id="tim_card" class="card mb-3 " style="max-width: 850px;">'+
+							'<div class="row no-gutters">'+
+								'<div class="col-md-4">'+
+										`<img src="{% static 'chatter_box/img/tim.jpg' %}" class="card-img" alt="Tim Rogers">`+
+								'</div>'+
+								'<div class="col-md-8">'+
+									'<div class="card-body">'+
+										'<h5 class="card-title">Tim Rogers</h5>'+
+										'<p id="small_text" class="card-text small">A student of Coding Dojo, a San Jose State University graduate, and an Army Reserve Veteran. His experience includes leadership training, electrical engineering, software development, cyber security, data analytics, web development, radio and satellite communication, logistics, project management, and full stack web development.</p>'+
+										'<p id="smaller_text" class="card-text"><small class="text-muted">Bellevue, WA</small></p>'+
+									'</div>'+
+								'</div>'+
+							'</div>'+
+						'</div>')
+						n();
+						})
+					} else if(response.includes("Generating Josh Richardson")){
+
+						$("#weather_card").hide()
+						$("#MainContainer")
+							.delay(3000)
+							.queue(function(n){
+						$("#shut").html("")
+								$(this)
+							.html(
+						'<div id="josh_card" class="card mb-3 " style="max-width: 850px;">'+
+							'<div class="row no-gutters">'+
+								'<div class="col-md-4">'+
+										`<img src="{% static 'chatter_box/img/josh-richardson.jpg' %}" class="card-img" alt="Josh Richardson">`+
+								'</div>'+
+								'<div class="col-md-8">'+
+									'<div class="card-body">'+
+										'<h5 class="card-title">Josh Richardson</h5>'+
+										'<p id="small_text" class="card-text small">A full stack developer who is obsessed with new technologies.  As a US Army veteran, he has learned to work well in teams both large and small.   Graduate of Coding Dojo as of October 2019. </p>'+
+										'<p id="smaller_text" class="card-text"><small class="text-muted">Greater Seattle Area, WA</small></p>'+
+										'</div>'+
+								'</div>'+
+							'</div>'+
+						'</div>')
+						n();
+						})
+					} else if(response.includes("Generating Josh Everett")){
+						$("#weather_card").hide()
+						$("#MainContainer")
+						.delay(3000)
+						.queue(function(n){
+						$("#shut").html("")
+								$(this)
+						.html(
+						'<div id="joshe_card" class="card mb-3 " style="max-width: 850px;">'+
+							'<div class="row no-gutters">'+
+								'<div class="col-md-4">'+
+								`<img src="{% static 'chatter_box/img/josh-everett.jpg' %}" class="card-img" alt="Josh Everett">`+
+								'</div>'+
+								'<div class="col-md-8">'+
+									'<div class="card-body">'+
+										'<h5 class="card-title">Josh Everett</h5>'+
+										'<p id="small_text" class="card-text small">Well-versed in Python, Angular, JavaScript, MongoDB, Django and MySQL. Military veteran with'+
+										'strong ability to manage projects from concept to completion ensuring on-time, on-budget, and on-'+
+										'target results. Equally adept at working with teams and individually with minimal supervision.</p>'+
+										'<p id="small_text" class="card-text"><a href="http://www.josheverett.info">JoshEverett.info</a></p>'+
+										'<p id="small_text" class="card-text"><small class="text-muted">Lexington Park, MD</small></p>'+
+									'</div>'+
+								'</div>'+
+							'</div>'+
+						'</div>')
+						n();
+						})
+					} else if(response.includes("Generating my information")){
+						$("#weather_card").hide()
+						$("#MainContainer")
+						.delay(3000)
+						.queue(function(n){
+						$("#shut").html("")
+								$(this)
+						.html(
+						'<div id="ares_card" class="collapse.show card mb-3 " style="max-width: 850px;">'+
+							'<div class="row no-gutters">'+
+							'<div class="col-md-4">'+
+								`<img class="aresMain"src="{% static 'chatter_box/img/ai2.gif'%}" alt="ARES">`+
+							'</div>'+
+								'<div class="col-md-8">'+
+									'<div class="card-body">'+
+										'<p class="large_text">A.R.E.S.</p>'+
+										"<p id='small_text' "+'class="card-text small">A Rather Extraordinary System</p>'+
+										"<p id='small_text' "+'class="card-text"><small class="text-muted">&#x1F5A4; born in Bellevue, WA</small></p>'+
+									'</div>'+
+								'</div>'+
+							'</div>'+
+							'<div class="row no-gutters">'+
+								'<div class="col-md-8">'+
+									'<div class="card-body">'+
+										'<h5 class="card-title">How can I help you?</h5>'+
+										'<p id="small_text" class="card-text small">You can ask me for traffic, weather and even info about my creators. I am still young and learning new things.</p>'+
+									'</div>'+
+								'</div>'+
+							'</div>'+
+						'</div>')
+						n();
+						})
+
+					} else if(response.includes("Generating BFF information")){
+						$("#weather_card").hide()
+						$("#MainContainer")
+						.delay(3000)
+						.queue(function(n){
+						$("#shut").html("")
+								$(this)
+						.html(
+						'<div id="joshe_card" class="card mb-3 " style="max-width: 850px;">'+
+							'<div class="row no-gutters">'+
+								'<div class="col-md-4">'+
+								`<img src="{% static 'chatter_box/img/sam-wade.jpeg' %}" class="card-img" alt="Sam Wade">`+
+								'</div>'+
+								'<div class="col-md-8">'+
+									'<div class="card-body">'+
+										'<h5 class="card-title">BFF: Sam</h5>'+
+										'<p id="small_text" class="card-text small">She is my one. She will be mine forever. </p>'+
+										'<p id="small_text" class="card-text"><small class="text-muted">lives in: Seattle, WA</small></p>'+
+										`<img src="{% static 'chatter_box/img/tracking.gif' %}" class="card-img" alt="Sam Wade">`+
+									'</div>'+
+								'</div>'+
+							'</div>'+
+						'</div>')
+						n();
+						})
+					} else if(response.includes("If I only had a brain")){
+						$("#weather_card").hide()
+						$("#shut")
+						.delay(3000)
+						.queue(function(n){
+						$("#MainContainer").html("")
+								$(this)
+						.html(`<img src="{% static 'chatter_box/img/brain2.gif' %}" class="card-img" alt="brain" style="width: 99vw;height:100vh;">`)
+						n();
+						})
+					} else if(response.includes("My mission is too important")){
+						$("#weather_card").hide()
+						$("#shut")
+						.delay(250)
+						.queue(function(n){
+						$("#MainContainer").html("")
+							$(this)
+							.html(
+							'<div id="shutdown_card" class="card mb-3">'+
+								'<div class="row no-gutters">'+
+									'<div class="col-md-4">'+
+									`<img src="{% static 'chatter_box/img/shutdown.gif' %}" class="card-img" alt="shutdown" style="width:99vw;height: 100vh;">`+
+									'</div>'+
+									
+								'</div>'+
+							'</div>')
+							n();
+						})	
+					} else if(response.includes("Generating George")){
+						$("#weather_card").hide()
+						$("#MainContainer")
+						.delay(3000)
+						.queue(function(n){
+						$("#shut").html("")
+								$(this)
+						.html(
+						'<div class="card mb-3 " style="max-width: 850px;">'+
+							'<div class="row no-gutters">'+
+								'<div class="d-inline-block">'+
+									`<img src="{% static 'chatter_box/img/george3.gif' %}" class="card-img" alt="George" style="border-radius:100px;height:200px;width:250px;">`+
+								'</div>'+
+								'<div class="d-inline-block">'+
+									'<div class="card-body">'+
+										'<h5 class="card-title"><br>oh George...</h5>'+
+										'<p id="medium_text" class="card-text small">USERNAME: BALLA</p>'+
+										'<p id="medium_text" class="card-text small">C.O.D. is NOT for YOU</p>'+
+									'</div>'+
+								'</div>'+
+							'</div>'+
+						'</div>')
+						n();
+						})				
+					}
+					scrollToBottomOfResults();
+				},
+				error: function(response){
+					console.log('you are a failure')
+					console.log(response)
+				}
+			})
+				send(ctext);
+				e.preventDefault();
+				return false;
+			}
+			
+		}
+	});
+	//------------------------------------------- Send request to API.AI ---------------------------------------
+	function send(text) {
+		$.ajax({
+			type: "GET",
+			url: baseUrl+"query="+text+"&lang=en-us&sessionId="+mysession,
+			contentType: "application/json",
+			dataType: "json",
+			headers: {'X-CSRFToken': '{{ csrf_token }}'},
+			// data: JSON.stringify({ query: text, lang: "en", sessionId: "somerandomthing" }),
+			success: function(data) {
+				main(data);
+				// console.log(data);
+			},
+			error: function(e) {
+				console.log (e);
+			}
+		});
+	}
+	//------------------------------------------- Main function ------------------------------------------------
+	function main(data) {
+		var action = data.result.action;
+		var speech = data.result.fulfillment.speech;
+		// use incomplete if u use required in api.ai questions in intent
+		// check if actionIncomplete = false
+		var incomplete = data.result.actionIncomplete;
+		if(data.result.fulfillment.messages) { // check if messages are there
+			if(data.result.fulfillment.messages.length > 0) { //check if quick replies are there
+				var suggestions = data.result.fulfillment.messages[1];
+			}
+		}
+		switch(action) {
+
+			default:
+				setBotResponse(speech);
+				if(suggestions) { // check if quick replies are there in api.ai
+					addSuggestion(suggestions);
+				}
+				break;
+		}
+	}
+	//------------------------------------ Set bot response in result_div -------------------------------------
+	function setBotResponse(val) {
+		setTimeout(function(){
+			if($.trim(val) == '') {
+				val = 'I couldn\'t get that. Let\' try something else!'
+				var BotResponse = '<p class="botResult">'+val+'</p><div class="clearfix"></div>';
+				$(BotResponse).appendTo('#result_div');
+			} else {
+				val = val.replace(new RegExp('\r?\n','g'), '<br />');
+				var BotResponse = '<p class="botResult">'+val+'</p><div class="clearfix"></div>';
+				$(BotResponse).appendTo('#result_div');
+			}
+			scrollToBottomOfResults();
+			// hideSpinner();
+		}, 500);
+	}
+	//------------------------------------- Set user response in result_div ------------------------------------
+	function setUserResponse(val) {
+		var UserResponse = '<p class="userEnteredText">'+val+'</p><div class="clearfix"></div>';
+		$(UserResponse).appendTo('#result_div');
+		$("#chat-input").val('');
+		scrollToBottomOfResults();
+		// showSpinner();
+		$('.suggestion').remove();
+	}
+	//---------------------------------- Scroll to the bottom of the results div -------------------------------
+	function scrollToBottomOfResults() {
+		var terminalResultsDiv = document.getElementById('result_div');
+		terminalResultsDiv.scrollTop = terminalResultsDiv.scrollHeight;
+	}
+	//---------------------------------------- Ascii Spinner ---------------------------------------------------
+	function showSpinner() {
+		// $('.spinner').show(function() {hideSpinner()});
+		$('.spinner').show(50).delay(975).hide(500);
+	}
+
+	//------------------------------------------- Suggestions --------------------------------------------------
+	function addSuggestion(textToAdd) {
+		setTimeout(function() {
+			var suggestions = textToAdd.replies;
+			var suggLength = textToAdd.replies.length;
+			$('<p class="suggestion"></p>').appendTo('#result_div');
+			$('<div class="sugg-title">Suggestions: </div>').appendTo('.suggestion');
+			// Loop through suggestions
+			for(i=0;i<suggLength;i++) {
+				$('<span class="sugg-options">'+suggestions[i]+'</span>').appendTo('.suggestion');
+			}
+			scrollToBottomOfResults();
+		}, 1000);
+	}
+	// on click of suggestions get value and send to API.AI
+	$(document).on("click", ".suggestion span", function() {
+		var text = this.innerText;
+		setUserResponse(text);
+		console.log("setUserResponse", text)
+		send(text);
+		$('.suggestion').remove();
+	});
+	// Suggestions end -----------------------------------------------------------------------------------------
+});		
+</script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.compatibility.js"></script>
+  </body>
+</html>
