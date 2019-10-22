@@ -1,98 +1,71 @@
 <html>
-  <head>
+	<head>
+		<title>A Rather Extraordinary System (A.R.E.S.)</title>
+		<meta name=viewport content="width=device-width, initial-scale=1">
+		
 		{% load static %}
-      <title>A Rather Extraordinary System (A.R.E.S.)</title>
-      <meta name=viewport content="width=device-width, initial-scale=1">
-	  <meta name="description" content="A. Rather. Extraordinary. System.
-		Our team created this bot during project week. We utilized the Chatterbot backend in Python and had the bot interact with DOM elements utlizing AJAX. " />
-  	  <meta name="keywords" content="job hiring tracking, application tracking system, career tracking, AI, artifical Intelligence, software engineering, software, developer, full-stack, fullstack, python, ajax, java, mean, C#, maryland, lexington park, PAX, 919-588-0090, Joshua Everett" />
-      
-      <!-- CSS -->
-      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-      <link rel="stylesheet" href="{% static 'chatter_box/css/font-awesome.min.css' %}">
-      <link rel="stylesheet" href="{% static 'chatter_box/css/style.css' %}">
-	 <!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-150260289-3"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+		<!-- CSS -->
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+		<link rel="stylesheet" href="{% static 'chatter_box/css/font-awesome.min.css' %}">
+		<link rel="stylesheet" href="{% static 'chatter_box/css/style.css' %}">
+	</head>
+	<body>
+		<!-- Global site tag (gtag.js) - Google Analytics -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-150597109-1"></script>
+		<script>
+			window.dataLayer = window.dataLayer || [];
+			function gtag(){dataLayer.push(arguments);}
+			gtag('js', new Date());
+			gtag('config', 'UA-150597109-1');
+		</script>
 
-  gtag('config', 'UA-150260289-3');
-</script>
-
-  </head>
-  <body>
-    <nav class="navbar navbar-dark bg-dark">
-        <div class="nav_img">
-            <img src="{% static 'chatter_box/img/ai2.gif' %}" alt="ARES"> <a class="navbar-brand" href="/">  (A.R.E.S.)</a>
-		</div>
-		<div class="collapse navbar-collapse" id="navbarNav">
-		<ul class="navbar-nav">
-			<li class="nav-item">
-				<a href="http://joshuaeverett22.com">JoshuaEverett22.com</a>
-			</li>
-		</ul>
-	</div>
-    </nav>
-<div id="shut"></div>
+		<nav class="navbar navbar-dark bg-dark">
+			<div class="nav_img">
+				<img src="{% static 'chatter_box/img/ai2.gif' %}" alt="ARES"> <a class="navbar-brand" href="/">  (A.R.E.S.)</a>
+			</div>
+		</nav>
+	<div id="shut"></div>
     <div class="container">
-
-  <!--BEGIN DYNAMIC DIV-->
-
-      <div class="text-center hd1">
-				
-				<div id="MainContainer">
-					<!--ARES CARD-->
-					<div id="ares_card" class="collapse.show card mb-3 " style="max-width: 850px;">
-					 <div class="row no-gutters">
-					   <div class="col-md-4">
-						   <img class="aresMain"src="{% static 'chatter_box/img/ai2.gif' %}" alt="ARES">
-					   </div>
-					   <div class="col-md-8">
-						 <div class="card-body">
-						   <p class="large_text">A.R.E.S.</p>
-						   <p id='small_text' class="card-text small">A Rather Extraordinary System</p>
-						   <p id='small_text' class="card-text"><small class="text-muted">&#x1F5A4; born in Bellevue, WA</small></p>
-						 </div>
-					   </div>
-					 </div>
-				   </div>
-				   <div id="ares_card2" class="collapse.show card mb-3 " style="max-width: 850px;">
-						<div class="row no-gutters">
-						   
-							<div class="card-body">
-							  <p class="medium_text">What I can do for you:</p>
-							  <p id='small_text' class="card-text small">You can ask me for traffic, weather and even info about my creators.
-							  <br>
-							  I am still young and learning new things.</p>
-							  <img class="aresMain2"src="{% static 'chatter_box/img/arrow.png' %}" alt="right">
-							</div>						
+	<!--BEGIN DYNAMIC DIV-->
+		<div class="text-center hd1">
+			<div id="MainContainer">
+				<!--ARES CARD-->
+				<div id="ares_card" class="collapse.show card mb-3 " style="max-width: 850px;">
+					<div class="row no-gutters">
+						<div class="col-md-4">
+							<img class="aresMain"src="{% static 'chatter_box/img/ai2.gif' %}" alt="ARES">
 						</div>
-					  </div>
-				   
+						<div class="col-md-8">
+							<div class="card-body">
+								<p class="large_text">A.R.E.S.</p>
+								<p id='small_text' class="card-text small">A Rather Extraordinary System</p>
+								<p id='small_text' class="card-text"><small class="text-muted">&#x1F5A4; born in Bellevue, WA</small></p>
+							</div>
+						</div>
+					</div>
 				</div>
-
-
-		<!--Weather CARD-->
-	  <div id="weather_card" class="card mb-3 " style="max-width: 750px;">
-		  <div class="row no-gutters">
-		   
-			
-			  
-				<h5 class="card-title">Local Weather</h5>
-				<script type='text/javascript' src='https://darksky.net/widget/default/47.6098,-122.1707/us12/en.js?width=100%&height=350&title=Bellevue, WA&textColor=333333&bgColor=FFFFFF&transparency=false&skyColor=undefined&fontFamily=Default&customFont=&units=us&htColor=333333&ltColor=333333&displaySum=yes&displayHeader=yes'></script>
-			
-			
-		  </div>
-		</div>
-		<!--END Weather CARD-->
-
-      <mybot></mybot>
-
+				<div id="ares_card2" class="collapse.show card mb-3 " style="max-width: 850px;">
+					<div class="row no-gutters">
+						<div class="card-body">
+							<p class="medium_text">What I can do for you:</p>
+							<p id='small_text' class="card-text small">You can ask me for traffic, weather and even info about my creators.
+							<br>
+							I am still young and learning new things.</p>
+							<img class="aresMain2"src="{% static 'chatter_box/img/arrow.png' %}" alt="right">
+						</div>						
+					</div>
+				</div>
+			</div>
+			<!--Weather CARD-->
+			<div id="weather_card" class="card mb-3 " style="max-width: 750px;">
+				<div class="row no-gutters">
+					<h5 class="card-title">Local Weather</h5>
+					<script type='text/javascript' src='https://darksky.net/widget/default/47.6098,-122.1707/us12/en.js?width=100%&height=350&title=Bellevue, WA&textColor=333333&bgColor=FFFFFF&transparency=false&skyColor=undefined&fontFamily=Default&customFont=&units=us&htColor=333333&ltColor=333333&displaySum=yes&displayHeader=yes'></script>
+				</div>
+			</div>
+			<!--END Weather CARD-->
+		<mybot></mybot>
     </div><!--container end-->
-
-
     <!--JS-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
     <script src="{% static 'chatter_box/js/script.js' %}"></script>
@@ -102,17 +75,10 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
 
-
-
-
-
-
     <!------------------------------------ BOT JS ------------------------------------>
 <script>
 $(document).ready(function() {
 	$("#weather_card").hide()
-
-
 	var stat = "{% static 'chatter_box/img/ai2.gif' %}"
 	//---------------------------------- Add dynamic html bot content(Widget style) ----------------------------
 	// You can also add the html content in html page and still it will work!
@@ -236,7 +202,6 @@ $(document).ready(function() {
 						</div>`)
 					n();
 						})
-						
 					} else if(response.includes("Generating weather map")){
 						$("#MainContainer")
 							.delay(3000)
@@ -247,7 +212,6 @@ $(document).ready(function() {
 								n();
 								$("#weather_card").show()
 							})
-
 					} else if(response.includes("Generating creator information")){
 						$("#weather_card").hide()
 						$("#MainContainer")
@@ -294,8 +258,8 @@ $(document).ready(function() {
 								'</div>'+
 								'<div class="col-md-8">'+
 									'<div class="card-body">'+
-										'<h5 class="card-title">Tim Rogers</h5>'+
-										'<p id="small_text" class="card-text small">A student of Coding Dojo, a San Jose State University graduate, and an Army Reserve Veteran. His experience includes leadership training, electrical engineering, software development, cyber security, data analytics, web development, radio and satellite communication, logistics, project management, and full stack web development.</p>'+
+										'<h5 class="card-title">Timothy Rogers</h5>'+
+										'<p id="small_text" class="card-text small">A full stack developer, a San Jose State University graduate, and an Army Reserve Veteran. His experience includes leadership training, electrical engineering, software development, cyber security, data analytics, web development, radio and satellite communication, logistics, project management, and full stack web development.</p>'+
 										'<p id="smaller_text" class="card-text"><small class="text-muted">Bellevue, WA</small></p>'+
 									'</div>'+
 								'</div>'+
@@ -304,7 +268,6 @@ $(document).ready(function() {
 						)
 						n();
 							})
-						
 					} else if(response.includes("Generating Tim&#39;s information")){
 						$("#weather_card").hide()
 						$("#MainContainer")
@@ -330,7 +293,6 @@ $(document).ready(function() {
 						n();
 						})
 					} else if(response.includes("Generating Josh Richardson")){
-
 						$("#weather_card").hide()
 						$("#MainContainer")
 							.delay(3000)
@@ -413,7 +375,6 @@ $(document).ready(function() {
 						'</div>')
 						n();
 						})
-
 					} else if(response.includes("Generating BFF information")){
 						$("#weather_card").hide()
 						$("#MainContainer")
@@ -462,7 +423,6 @@ $(document).ready(function() {
 									'<div class="col-md-4">'+
 									`<img src="{% static 'chatter_box/img/shutdown.gif' %}" class="card-img" alt="shutdown" style="width:99vw;height: 100vh;">`+
 									'</div>'+
-									
 								'</div>'+
 							'</div>')
 							n();
@@ -503,7 +463,6 @@ $(document).ready(function() {
 				e.preventDefault();
 				return false;
 			}
-			
 		}
 	});
 	//------------------------------------------- Send request to API.AI ---------------------------------------
@@ -537,7 +496,6 @@ $(document).ready(function() {
 			}
 		}
 		switch(action) {
-
 			default:
 				setBotResponse(speech);
 				if(suggestions) { // check if quick replies are there in api.ai
@@ -581,7 +539,6 @@ $(document).ready(function() {
 		// $('.spinner').show(function() {hideSpinner()});
 		$('.spinner').show(50).delay(975).hide(500);
 	}
-
 	//------------------------------------------- Suggestions --------------------------------------------------
 	function addSuggestion(textToAdd) {
 		setTimeout(function() {
@@ -609,5 +566,5 @@ $(document).ready(function() {
 </script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.compatibility.js"></script>
-  </body>
+	</body>
 </html>
